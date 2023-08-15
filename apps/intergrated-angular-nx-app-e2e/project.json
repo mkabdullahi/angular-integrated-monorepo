@@ -1,0 +1,33 @@
+{
+  "name": "intergrated-angular-nx-app-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/intergrated-angular-nx-app-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/intergrated-angular-nx-app-e2e/cypress.config.ts",
+        "devServerTarget": "intergrated-angular-nx-app:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "intergrated-angular-nx-app:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "intergrated-angular-nx-app:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/intergrated-angular-nx-app-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["intergrated-angular-nx-app"]
+}
